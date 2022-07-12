@@ -23,8 +23,8 @@ module Pod
                                         
                                         # There has to be a single file in the Classes dir
                                         # or a framework won't be created
-                                        
-                                        `mv ./templates/swift/Example/* ./`
+                                        `touch Pod/Classes/ReplaceMe.swift`
+                                        `mv ./templates/swift/* ./`
                                         
         end
     end
