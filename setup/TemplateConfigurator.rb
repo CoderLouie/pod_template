@@ -94,6 +94,10 @@ module Pod
             puts "\nRunning " + "pod install".magenta + " on your new library."
             puts ""
             
+            Dir.chdir("Example") do
+              system "pod install"
+            end
+            
             system "pod install"
             
 #            `git add .`
