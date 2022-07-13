@@ -295,14 +295,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NW3KV7KHV6;
-				INFOPLIST_FILE = PROJECT/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Example for PROJECT/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gomo.PROJECT;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gomo.PROJECT-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -313,14 +313,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NW3KV7KHV6;
-				INFOPLIST_FILE = PROJECT/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Example for PROJECT/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gomo.PROJECT;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gomo.PROJECT-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
