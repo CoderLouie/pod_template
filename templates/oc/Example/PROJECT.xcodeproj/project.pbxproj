@@ -39,10 +39,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B6462623287E618F00DBC7FD /* Podspec Metadata */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
 		B6D4D892287D688A00EAEBD1 = {
 			isa = PBXGroup;
 			children = (
-				B6D4D89D287D688A00EAEBD1 /* PROJECT */,
+				B6462623287E618F00DBC7FD /* Podspec Metadata */,
+				B6D4D89D287D688A00EAEBD1 /* Example for PROJECT */,
 				B6D4D89C287D688A00EAEBD1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,7 +63,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B6D4D89D287D688A00EAEBD1 /* PROJECT */ = {
+		B6D4D89D287D688A00EAEBD1 /* Example for PROJECT */ = {
 			isa = PBXGroup;
 			children = (
 				B6D4D89E287D688A00EAEBD1 /* CPDAppDelegate.h */,
@@ -68,7 +76,7 @@
 				B6D4D8AF287D688D00EAEBD1 /* Info.plist */,
 				B6D4D8B0287D688D00EAEBD1 /* main.m */,
 			);
-			path = PROJECT;
+			path = "Example for PROJECT";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

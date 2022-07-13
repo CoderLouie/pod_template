@@ -82,6 +82,9 @@ module Pod
             replace_variables_in_files
             clean_template_files
             rename_template_files
+            add_pods_to_podfile
+            rename_classes_folder
+            ensure_carthage_compatibility
             reinitialize_git_repo
             run_pod_install
             
@@ -90,17 +93,18 @@ module Pod
         
         #----------------------------------------#
         
+        def ensure_carthage_compatibility
+            FileUtils.ln_s('Example/Pods/Pods.xcodeproj', '_Pods.xcodeproj')
+        end
         def run_pod_install
             puts "\nRunning " + "pod install".magenta + " on your new library."
             puts ""
             
             Dir.chdir("Example") do
-              system "pod install"
+                system "pod install"
             end
             
-            system "pod install"
-            
-#            `git add .`
+            `git add .`
 #            `git commit -m "Initial commit"`
         end
         
@@ -123,10 +127,14 @@ module Pod
                 File.open(file_name, "w") { |file| file.puts text }
             end
         end
-         
         
-        def add_line_to_pch line
-            @prefixes << line
+        def add_pods_to_podfile
+            podfile = File.read podfile_path
+            podfile_content = @pods_for_podfile.map do |pod|
+                "pod '" + pod + "'"
+            end.join("\n    ")
+            podfile.gsub!("${INCLUDED_PODS}", podfile_content)
+            File.open(podfile_path, "w") { |file| file.puts podfile }
         end
         
         def rename_template_files
@@ -134,6 +142,9 @@ module Pod
             FileUtils.mv "NAME.podspec", "#{pod_name}.podspec"
         end
         
+        def rename_classes_folder
+          FileUtils.mv "Pod", @pod_name
+        end
         
         def reinitialize_git_repo
             `rm -rf .git`
@@ -148,7 +159,7 @@ module Pod
         #----------------------------------------#
         
         def user_name
-#            (ENV['GIT_COMMITTER_NAME'] || github_user_name || `git config user.name` || `<GITHUB_USERNAME>` ).strip
+            #            (ENV['GIT_COMMITTER_NAME'] || github_user_name || `git config user.name` || `<GITHUB_USERNAME>` ).strip
             'liyang'
         end
         
