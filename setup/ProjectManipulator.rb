@@ -55,6 +55,7 @@ module Pod
             
             # rename xcproject
             File.rename(project_folder + "/PROJECT.xcodeproj", project_folder + "/" +  @configurator.pod_name + ".xcodeproj")
+            File.rename(project_folder + "/Example for PROJECT", project_folder + "/Example for " +  @configurator.pod_name)
             
             ["CPDAppDelegate.h", "CPDAppDelegate.m", "CPDViewController.h", "CPDViewController.m"].each do |file|
                 before = project_folder + "/PROJECT/" + file
