@@ -93,9 +93,6 @@ module Pod
         
         #----------------------------------------#
         
-        def ensure_carthage_compatibility
-            FileUtils.ln_s('Example/Pods/Pods.xcodeproj', '_Pods.xcodeproj')
-        end
         def run_pod_install
             puts "\nRunning " + "pod install".magenta + " on your new library."
             puts ""
@@ -107,6 +104,36 @@ module Pod
             `git add .`
 #            `git commit -m "Initial commit"`
         end
+        
+        def reinitialize_git_repo
+            `rm -rf .git`
+            `git init`
+            `git add -A`
+        end
+        
+        def ensure_carthage_compatibility
+            FileUtils.ln_s('Example/Pods/Pods.xcodeproj', '_Pods.xcodeproj')
+        end
+        
+        def rename_classes_folder
+          FileUtils.mv "Pod", @pod_name
+        end
+        
+        def add_pods_to_podfile
+            podfile = File.read podfile_path
+            podfile_content = @pods_for_podfile.map do |pod|
+                "pod '" + pod + "'"
+            end.join("\n    ")
+            podfile.gsub!("${INCLUDED_PODS}", podfile_content)
+            File.open(podfile_path, "w") { |file| file.puts podfile }
+        end
+        
+        def rename_template_files
+            FileUtils.mv "POD_README.md", "README.md"
+            FileUtils.mv "POD_LICENSE", "LICENSE"
+            FileUtils.mv "NAME.podspec", "#{pod_name}.podspec"
+        end
+        
         
         def clean_template_files
             ["./**/.gitkeep", "configure", "_CONFIGURE.rb", "README.md", "LICENSE", "templates", "setup", "CODE_OF_CONDUCT.md"].each do |asset|
@@ -128,29 +155,8 @@ module Pod
             end
         end
         
-        def add_pods_to_podfile
-            podfile = File.read podfile_path
-            podfile_content = @pods_for_podfile.map do |pod|
-                "pod '" + pod + "'"
-            end.join("\n    ")
-            podfile.gsub!("${INCLUDED_PODS}", podfile_content)
-            File.open(podfile_path, "w") { |file| file.puts podfile }
-        end
         
-        def rename_template_files
-            FileUtils.mv "POD_README.md", "README.md"
-            FileUtils.mv "NAME.podspec", "#{pod_name}.podspec"
-        end
         
-        def rename_classes_folder
-          FileUtils.mv "Pod", @pod_name
-        end
-        
-        def reinitialize_git_repo
-            `rm -rf .git`
-            `git init`
-            `git add -A`
-        end
         
         def validate_user_details
             return (user_email.length > 0) && (user_name.length > 0)
