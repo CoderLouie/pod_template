@@ -102,7 +102,8 @@ module Pod
             end
             
             `git add .`
-#            `git commit -m "Initial commit"`
+            
+            `git commit -m "Initial commit"`
         end
         
         def reinitialize_git_repo
