@@ -101,9 +101,9 @@ module Pod
                 system "pod install"
             end
             
-            `git add .`
-            
-            `git commit -m "Initial commit"`
+#            `git add .`
+#
+#            `git commit -m "Initial commit"`
         end
         
         def reinitialize_git_repo
